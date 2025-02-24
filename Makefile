@@ -6,6 +6,7 @@ SRC_FILE = so_long.c  g_n_l/get_next_line.c g_n_l/get_next_line_utlis.c \
 			free_stack.c \
 			so_long_utils_1.c\
 			so_long_utils_2.c\
+			so_long_utils_3.c\
 
 OBJ_FILE = $(SRC_FILE:.c=.o)
 
