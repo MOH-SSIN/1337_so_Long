@@ -8,17 +8,24 @@
 #include "mlx.h"
 #include "stdio.h"
 
-# define TAILLE 60
-# define ESPACE "assets/baground.xpm"//0
+# define TAILLE 50
+// # define ESPACE "assets/baground.xpm"//0
+# define ESPACE "image_1/baground.xpm"
 // # define ESPACE_2 "image/baground.xpm"//0
-# define COLLECT "image/Collect.xpm"//C
-# define DOOR "image/Close_Door.xpm"//E
-# define DOOR_OPEN "image/Open_Door.xpm"//E
-# define JOUEUR_BOTTOM "image/Pac-Man_down.xpm"
-# define JOUEUR_TOP "image/Pac-Man_up.xpm"//P
-# define JOUEUR_RIGHT "image/Pac-Man_right.xpm"//P
-# define JOUEUR_LEFT "image/Pac-Man_left.xpm"//P
-# define MUR "image/wall.xpm"//1
+# define COLLECT "image_1/Collect.xpm"//C
+// # define DOOR "image/Close_Door.xpm"//E
+# define DOOR "image_1/door_close.xpm"//E
+// # define DOOR_OPEN "image/Open_Door.xpm"//E
+# define DOOR_OPEN "image_1/door_open.xpm"//E
+// # define JOUEUR_BOTTOM "image/Pac-Man_down.xpm"
+# define JOUEUR_BOTTOM "image_1/pac_man_botom.xpm"
+// # define JOUEUR_TOP "image/Pac-Man_up.xpm"//P
+# define JOUEUR_TOP "image_1/pac_man_top.xpm"//P
+// # define JOUEUR_RIGHT "image/Pac-Man_right.xpm"//P
+# define JOUEUR_RIGHT "image_1/pac_man_right.xpm"//P
+// # define JOUEUR_LEFT "image/Pac-Man_left.xpm"//P
+# define JOUEUR_LEFT "image_1/pac_man_left.xpm"//P
+# define MUR "image_1/wall.xpm"//1
 // # define ENNEMI ""//
 
 typedef struct s_carte
