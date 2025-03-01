@@ -35,11 +35,11 @@ void print_images(t_carte *jeu)
     int i;
     int j;
 
-    i = 0;
-    while (jeu->carte[i])
+    i = -1;
+    while (jeu->carte[++i])
     {
-        j = 0;
-        while (jeu->carte[i][j])
+        j = -1;
+        while (jeu->carte[i][++j])
         {
 			//ona kn printi kn definire la position de joueur
 			if (jeu->carte[i][j] == 'P')
@@ -57,19 +57,113 @@ void print_images(t_carte *jeu)
 				jeu->nbr_collect++;
 			//cette fonction cat aficher les image dans fenetre
             aid_print_images(jeu, i, j);
-            j++;
         }
-        i++;
+    }
+}
+
+void	print_image_4(t_carte **jeu, char image)
+{
+	mlx_destroy_image((*jeu)->mlx, (*jeu)->mlx_img); //knsuprimer image li precedente
+	if (image == 'S')
+	{
+		(*jeu)->mlx_img = mlx_xpm_file_to_image((*jeu)->mlx, ESPACE, &(*jeu)->largeur_carte, &(*jeu)->hauteur_carte);
+		mlx_put_image_to_window((*jeu)->mlx, (*jeu)->mlx_win, (*jeu)->mlx_img, (*jeu)->pos_ennemi_y * TAILLE, (*jeu)->pos_ennemi_x * TAILLE);
+	}
+	if (image == 'N')
+	{
+		(*jeu)->mlx_img = mlx_xpm_file_to_image((*jeu)->mlx, ENNEMI, &(*jeu)->largeur_carte, &(*jeu)->hauteur_carte);
+		mlx_put_image_to_window((*jeu)->mlx, (*jeu)->mlx_win, (*jeu)->mlx_img, (*jeu)->pos_ennemi_y * TAILLE, (*jeu)->pos_ennemi_x * TAILLE);
+	}
+
+}
+
+int move_enemy(t_carte **jeu)
+{
+    int next_x;
+
+    if (++frame_count < 5000)
+        return (0);
+    frame_count = 0;
+
+    // get_position_enimi(jeu);
+    next_x = (*jeu)->pos_ennemi_x + direction;
+    if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == '1' || 
+        (*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'C')
+    {
+        direction *= -1;
+        next_x = (*jeu)->pos_ennemi_x + direction;
+    }
+	// hadi ztha 7ite chek li drt 3la plyer nakafich hdi kat5ali ila enimi kano 3ndi nfse cordoner dyale player nkhroje hit lowla 7alte liya 4i mochkil dyale ila jite enimi mn jnabe ok
+	// mohime lowla ila player mcha 3nde enimi ama hadi ila enim mcha 3nd player ok
+    else if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'P')
+		enimi_win(jeu);
+	//hna m4ndoze 7ta maykone player 9odame enimi
+    (*jeu)->carte[(*jeu)->pos_ennemi_x][(*jeu)->pos_ennemi_y] = '0';
+    print_image_4(jeu, 'S');
+    (*jeu)->pos_ennemi_x = next_x;
+    (*jeu)->carte[(*jeu)->pos_ennemi_x][(*jeu)->pos_ennemi_y] = 'X';
+    print_image_4(jeu, 'N');
+    return (0);
+}
+
+
+void	position_enimi(t_carte **jeu)
+{
+	int	i;
+	int	j;
+
+    i = 0;
+    while ((*jeu)->carte[i])
+    {
+        j = 0;
+        while ((*jeu)->carte[i][j])
+        {
+            if ((*jeu)->carte[i][j] == 'X')
+			{
+				(*jeu)->pos_ennemi_x = i;
+				(*jeu)->pos_ennemi_y = j;
+				return ;
+			}
+            (j)++;
+        }
+        (i)++;
+    }
+}
+
+void	position_player(t_carte **jeu)
+{
+	int	i;
+	int	j;
+
+    i = 0;
+    while ((*jeu)->carte[i])
+    {
+        j = 0;
+        while ((*jeu)->carte[i][j])
+        {
+            if ((*jeu)->carte[i][j] == 'P')
+			{
+				(*jeu)->pos_joueur_x = i;
+				(*jeu)->pos_joueur_y = j;
+				return ;
+			}
+            (j)++;
+        }
+        (i)++;
     }
 }
 
 int init_jeu(t_carte **jeu)
 {
     //initalisation dyal mlx
+	position_enimi(jeu);
+	position_player(jeu);
+	if ((*jeu)->carte[(*jeu)->pos_joueur_x ][(*jeu)->pos_joueur_y] == (*jeu)->carte[(*jeu)->pos_ennemi_x - 1][(*jeu)->pos_ennemi_y])
+		enimi_win(jeu);
     (*jeu)->mlx = mlx_init();
     if (!(*jeu)->mlx)
     {
-        free_jeu(*jeu);
+        // free_jeu(*jeu);hadi blach deja ila 5rjate b false 5asi n free_jeu
         return (0);
     }
     // ouvrire dyale fenetre
@@ -77,12 +171,16 @@ int init_jeu(t_carte **jeu)
                 (*jeu)->hauteur_carte * TAILLE, "so_long");
     if (!((*jeu)->mlx_win))
     {
-        free_jeu(*jeu);
+        // free_jeu(*jeu);hadi blach deja ila 5rjate b false 5asi n free_jeu
         return (0);
     }
     print_images(*jeu);
+	(*jeu)->nbr_mouve = 0;// inistalisation  dyale nbr de move en 0;
     mlx_hook((*jeu)->mlx_win, 17, (1L<<0), ft_exit, jeu);
     mlx_hook((*jeu)->mlx_win, 2, (1L<<0), ft_keymove, jeu);
+	mlx_loop_hook((*jeu)->mlx, move_enemy, jeu);
+	//hdchi pour enimi
+	//
     mlx_loop((*jeu)->mlx);
     return (1);
 }

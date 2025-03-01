@@ -4,9 +4,11 @@ SRC_FILE = so_long.c  g_n_l/get_next_line.c g_n_l/get_next_line_utlis.c \
 			verification_map.c \
 			init_jeu.c init_carte.c\
 			free_stack.c \
-			so_long_utils_1.c\
-			so_long_utils_2.c\
-			so_long_utils_3.c\
+			so_long_utils_1.c \
+			so_long_utils_2.c \
+			so_long_utils_3.c \
+			so_long_utils_4.c \
+			so_long_utils_5.c \
 
 OBJ_FILE = $(SRC_FILE:.c=.o)
 

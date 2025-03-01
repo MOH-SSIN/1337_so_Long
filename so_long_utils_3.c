@@ -1,37 +1,56 @@
 #include "so_long.h"
 
-void	print_image_3(t_carte *jeu, int i, int j, bool print)
+void update_move_count(t_carte *jeu)
 {
-	mlx_destroy_image(jeu->mlx, jeu->mlx_img); // Efface l'image précédente
-	if (i == 1 && j == 0)
-	    jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM, &jeu->largeur_carte, &jeu->hauteur_carte);
-	else if  (i == -1 && j == 0)
+	char *count_str;
+	char *string_put;
+
+	count_str = ft_itoa(jeu->nbr_mouve);
+	if (!count_str)
+		return ;
+	string_put = ft_strjoin("MV:", count_str);
+	free(count_str);
+	if (!string_put)
+		return ;
+	if (jeu->mlx_img)
+	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
+	jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, MUR_2, &jeu->largeur_carte, &jeu->hauteur_carte);
+	if (!jeu->mlx_img)
 	{
-	    jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP, &jeu->largeur_carte, &jeu->hauteur_carte);
+		free(string_put);
+		return ;
 	}
-	else if  (i == 0 && j == 1)
-	    jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT, &jeu->largeur_carte, &jeu->hauteur_carte);
-	else if  (i == 0 && j == -1)
-	    jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_LEFT, &jeu->largeur_carte, &jeu->hauteur_carte);
-	if (print)
-	    mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, (jeu->pos_joueur_y  + j)* TAILLE, (jeu->pos_joueur_x + i) * TAILLE);
-	else
-	    mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x  * TAILLE);
+	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, 0, 0);
+	mlx_string_put(jeu->mlx, jeu->mlx_win, 5, 10, 0xFFFFFF, string_put);// 3ndi 3ibe hna !! fach knfote 1000 l7ale baniya ndire chi image tama li width dyalha kbire xwiya !!
+	free(string_put);
 }
 
-void print_door_out(t_carte *jeu)
+void	print_image_3(t_carte *jeu, int i, int j, bool print)
 {
-	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
-	jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, DOOR_OPEN, &jeu->largeur_carte, &jeu->hauteur_carte);
-	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_door_y * TAILLE, jeu->pos_door_x * TAILLE);
+	mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
+	if (i == 1 && j == 0)
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM, &jeu->largeur_carte, &jeu->hauteur_carte);
+	else if  (i == -1 && j == 0)
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP, &jeu->largeur_carte, &jeu->hauteur_carte);
+	}
+	else if  (i == 0 && j == 1)
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT, &jeu->largeur_carte, &jeu->hauteur_carte);
+	else if  (i == 0 && j == -1)
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_LEFT, &jeu->largeur_carte, &jeu->hauteur_carte);
+	if (print)
+		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, (jeu->pos_joueur_y  + j)* TAILLE, (jeu->pos_joueur_x + i) * TAILLE);
+	else
+		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x  * TAILLE);
 }
 
 void print_image_2(t_carte *jeu, int i, int j)
 {
-    mlx_destroy_image(jeu->mlx, jeu->mlx_img); // Efface l'image précédente
+    mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
     jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, ESPACE, &jeu->largeur_carte, &jeu->hauteur_carte);
     mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x * TAILLE);
 	print_image_3(jeu, i, j, true);
+    update_move_count(jeu);
 	jeu->pos_joueur_x += i;
 	jeu->pos_joueur_y += j;
 	if (!jeu->nbr_collect)
@@ -40,6 +59,9 @@ void print_image_2(t_carte *jeu, int i, int j)
 
 void	ft_move(t_carte **jeu, int i, int j)
 {
+	// hde chek 3la pleyer dyali ila kano 3ndo les cordoner b7ale enimi 7ite knt kl9a mochkil ila jito mn jnabe
+	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'X')
+		enimi_win(jeu);
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == '1' 
 			|| ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'E' && (*jeu)->nbr_collect))
 	{
@@ -55,12 +77,8 @@ void	ft_move(t_carte **jeu, int i, int j)
 		(*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] = 'P';
 	}
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'E' && !(*jeu)->nbr_collect)
-	{
-		ft_putstr_fd("You Win\n", 1);
-		mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);//Fermer fenetre graphique cree par MiniLibX
-		free_jeu(*jeu);
-		exit(0);
-	}
+		player_win(jeu);
+    ft_print_movement(*jeu);
 	print_image_2(*jeu, i, j);
 }
 
@@ -74,5 +92,7 @@ int	ft_keymove(int click, t_carte **jeu)
 		ft_move(jeu, 0, 1);//mi7ware i fix tzade mais j 4atzade
 	else if (click == 123 || click == 0)// gauche
 		ft_move(jeu, 0, -1);//mi7ware i fix tzade mais j 4atn9se
+    else if (click == 53)
+		ft_sortie(jeu);
 	return (0);
 }

@@ -26,10 +26,16 @@
 // # define JOUEUR_LEFT "image/Pac-Man_left.xpm"//P
 # define JOUEUR_LEFT "image_1/pac_man_left.xpm"//P
 # define MUR "image_1/wall.xpm"//1
-// # define ENNEMI ""//
+# define MUR_2 "image_1/wall.xpm"//1
+# define ENNEMI "image_1/Enemy.xpm"//
+
+// 
+static int direction = 1;// hadi bach ncontroler movment dyale enimi dans direction x-> i
+static int frame_count = 0;// hadi drtha bach ncoteoler c=vitese dyale enimi
 
 typedef struct s_carte
 {
+    int     direction;
     void    *mlx;
     void    *mlx_win;
     void    *mlx_img;
@@ -70,8 +76,16 @@ char **copie_map(char **carte);
 void ft_marque(char **carte, int i, int j);
 
 // so_long_utlis_2.c
-int aid_verif_elements(char element,int *p, int *e, int *c);
+int aid_verif_elements(char element,int *p, int *e, int *c, int *x);
 int get_position_player(char **copie, int *i, int *j);
 int ft_presence_elemntes(char **copie);
-// void print_images(t_carte *jeu);
+
+//so_long_utils_4.c
+void print_door_out(t_carte *jeu);
+void    ft_print_movement(t_carte *jeu);
+
+//so_long_utils_5.c
+void	player_win(t_carte **jeu);
+void	enimi_win(t_carte **jeu);
+void	ft_sortie(t_carte **jeu);
 #endif

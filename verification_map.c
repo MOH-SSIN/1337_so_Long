@@ -53,74 +53,72 @@ int verif_elements(char **carte)
     int p;
     int e;
     int c;
+    int x;
 
     p = 0;
     e = 0;
     c = 0;
     i = 0;
+    x = 0;
     while (carte[i])
     {
         j = 0;
         while (carte[i][j])
         {
-            if (!aid_verif_elements(carte[i][j], &p, &e, &c))
+            if (!aid_verif_elements(carte[i][j], &p, &e, &c, &x))
                 return (0);
             j++;
         }
         i++;
     }
-    if (p != 1 || e != 1 || c < 1)
+    if (p != 1 || e != 1 || x !=  1 || c < 1)
         return (0);
     return (1);
 }
 
 int est_bloque(char **carte)
 {
-    char    **copie ;
-    int     i ;
-    int     j;
-    int     c;
-    int     e;
+	char	**copie ;
+	int	i ;
+	int	j;
 
-    copie = copie_map(carte);
-    if (!copie)
-        return (0);
-    // trouver position dyal player
-    if (get_position_player(copie, &i, &j))
-    {
-        ft_marque(copie, i, j);
-    }
-    //apres kanvirifier wach E et C wach atteignables
-    if (ft_presence_elemntes(copie))
-    {
-        free_map(copie);
-        return (1);
-    }
-    free_map(copie);
-    return (0);
+	copie = copie_map(carte);
+	if (!copie)
+		return (0);
+	// trouver position dyal player
+	if (get_position_player(copie, &i, &j))
+		ft_marque(copie, i, j);
+	//apres kanvirifier wach E et C wach atteignables
+	if (ft_presence_elemntes(copie))
+	{
+		free_map(copie);
+		return (1);
+	}
+	free_map(copie);
+	return (0);
 }
 
 int verfication(t_carte *jeu)
 {
-    if (!verfi_rectan(jeu->carte))
-    {
-        ft_putstr_fd("carte n'est pas rectangulaire\n",2);
-        return (0);
-    }
-    if (!verif_murs(jeu->carte))
-    {
-        ft_putstr_fd("carte n'est pas entourée de murs\n",2);
-        return (0);
-    }
-    if (!verif_elements(jeu->carte))
-    {
-        ft_putstr_fd("Problème avec les éléments P, E, ou C\n", 2);
-        return (0);
-    }
-    if (!est_bloque(jeu->carte))
-    {
-         ft_putstr_fd("L'élément est bloqué\n", 2);
-        return (0);
-    }
-    return (1);
+	if (!verfi_rectan(jeu->carte))
+	{
+		ft_putstr_fd("carte n'est pas rectangulaire\n",2);
+		return (0);
+	}
+	if (!verif_murs(jeu->carte))
+	{
+		ft_putstr_fd("carte n'est pas entourée de murs\n",2);
+		return (0);
+	}
+	if (!verif_elements(jeu->carte))
+	{
+		ft_putstr_fd("Problème avec les éléments P, E, ou C\n", 2);
+		return (0);
+	}
+	if (!est_bloque(jeu->carte))
+	{
+		ft_putstr_fd("L'élément est bloqué\n", 2);
+		return (0);
+	}
+	return (1);
 }

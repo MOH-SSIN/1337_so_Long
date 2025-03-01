@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-int aid_verif_elements(char element,int *p, int *e, int *c)
+int aid_verif_elements(char element,int *p, int *e, int *c, int *x)
 {
     if (element == 'P')
         (*p)++;
@@ -8,6 +8,8 @@ int aid_verif_elements(char element,int *p, int *e, int *c)
         (*e)++;
     else if (element == 'C')
         (*c)++;
+    else if (element == 'X')
+        (*x)++;
     else if (element != '0' && element != '1')
                 return (0);
     return (1);
@@ -36,10 +38,12 @@ int ft_presence_elemntes(char **copie)
     int j;
     int c;
     int e;
+    int x;
 
     i = 0;
     c = 0;
     e = 0;
+    x = 0;
     while (copie[i])
     {
         j = 0;
@@ -49,9 +53,11 @@ int ft_presence_elemntes(char **copie)
                 e++;
             else if (copie[i][j] == 'C')
                 c++;
+            else if (copie[i][j] == 'X')
+                x++;
             j++;
         }
         i++;
     }
-    return (c == 0 && e == 0);// 1 ila les elemnet('E' et 'C') makiniche
+    return (c == 0 && e == 0 && x == 0);// 1 ila les elemnet('E' et 'C') makiniche
 }

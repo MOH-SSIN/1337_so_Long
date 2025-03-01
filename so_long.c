@@ -27,7 +27,7 @@ void	ft_so_long(t_carte **jeu)
 	}
 	if (!init_jeu(jeu))
 	{
-		mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);
+		mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);//hna n9dre njm3e hdo fune fois mchtarkine fhde les line !!
 		free_jeu(*jeu);
 		exit(1);
 	}
