@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int aid_verif_elements(char element,int *p, int *e, int *c, int *x)
 {

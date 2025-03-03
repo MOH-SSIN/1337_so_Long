@@ -1,4 +1,5 @@
-#include "so_long.h"
+#include "so_long_bonus.h"
+
 //une remarque x->i(verticale) et ona y->j(horizotal)
 // hit la fonction  mlx_put_image_to_window katakhose la valeure horizotal 3ade virtucale 
 void aid_print_images(t_carte *jeu, int x, int y)
@@ -106,53 +107,6 @@ int move_enemy(t_carte **jeu)
     return (0);
 }
 
-
-void	position_enimi(t_carte **jeu)
-{
-	int	i;
-	int	j;
-
-    i = 0;
-    while ((*jeu)->carte[i])
-    {
-        j = 0;
-        while ((*jeu)->carte[i][j])
-        {
-            if ((*jeu)->carte[i][j] == 'X')
-			{
-				(*jeu)->pos_ennemi_x = i;
-				(*jeu)->pos_ennemi_y = j;
-				return ;
-			}
-            (j)++;
-        }
-        (i)++;
-    }
-}
-
-void	position_player(t_carte **jeu)
-{
-	int	i;
-	int	j;
-
-    i = 0;
-    while ((*jeu)->carte[i])
-    {
-        j = 0;
-        while ((*jeu)->carte[i][j])
-        {
-            if ((*jeu)->carte[i][j] == 'P')
-			{
-				(*jeu)->pos_joueur_x = i;
-				(*jeu)->pos_joueur_y = j;
-				return ;
-			}
-            (j)++;
-        }
-        (i)++;
-    }
-}
-
 int init_jeu(t_carte **jeu)
 {
     //initalisation dyal mlx
@@ -179,8 +133,6 @@ int init_jeu(t_carte **jeu)
     mlx_hook((*jeu)->mlx_win, 17, (1L<<0), ft_exit, jeu);
     mlx_hook((*jeu)->mlx_win, 2, (1L<<0), ft_keymove, jeu);
 	mlx_loop_hook((*jeu)->mlx, move_enemy, jeu);
-	//hdchi pour enimi
-	//
     mlx_loop((*jeu)->mlx);
     return (1);
 }

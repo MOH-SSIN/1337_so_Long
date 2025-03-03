@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "libft/libft.h"
+#include "../libft/libft.h"
 #include "../g_n_l/get_next_line.h"
 #include <stdbool.h>
 #include <fcntl.h>
@@ -76,7 +76,7 @@ char **copie_map(char **carte);
 void ft_marque(char **carte, int i, int j);
 
 // so_long_utlis_2.c
-int aid_verif_elements(char element,int *p, int *e, int *c, int *x);
+int aid_verif_elements(char element,int *p, int *e, int *c);
 int get_position_player(char **copie, int *i, int *j);
 int ft_presence_elemntes(char **copie);
 

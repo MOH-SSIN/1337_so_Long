@@ -2,7 +2,7 @@
 # define GET_NEXT_LINE_H
 
 
-#include "../so_long.h"
+#include "../src/so_long.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10000000
 # endif

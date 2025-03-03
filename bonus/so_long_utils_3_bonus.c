@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void update_move_count(t_carte *jeu)
 {
@@ -78,7 +78,8 @@ void	ft_move(t_carte **jeu, int i, int j)
 	}
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'E' && !(*jeu)->nbr_collect)
 		player_win(jeu);
-    ft_print_movement(*jeu);
+    // ft_print_movement(*jeu); 4adi n7ydha ondire hdi -> (*jeu)->nbr_mouve ++;
+	(*jeu)->nbr_mouve ++;
 	print_image_2(*jeu, i, j);
 }
 

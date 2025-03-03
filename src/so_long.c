@@ -1,21 +1,22 @@
 #include "so_long.h"
 
-void	print_map(t_carte *jeu)
-{
-	int i = 0;
-	int j;
-	while (jeu->carte[i])
-	{
-		j = 0;
-		while (jeu->carte[i][j])
-		{
-			printf("%c",jeu->carte[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
+//pour print map
+// void	print_map(t_carte *jeu)
+// {
+// 	int i = 0;
+// 	int j;
+// 	while (jeu->carte[i])
+// 	{
+// 		j = 0;
+// 		while (jeu->carte[i][j])
+// 		{
+// 			printf("%c",jeu->carte[i][j]);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }
 
 void	ft_so_long(t_carte **jeu)
 {

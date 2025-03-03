@@ -53,25 +53,23 @@ int verif_elements(char **carte)
     int p;
     int e;
     int c;
-    int x;
 
     p = 0;
     e = 0;
     c = 0;
     i = 0;
-    x = 0;
     while (carte[i])
     {
         j = 0;
         while (carte[i][j])
         {
-            if (!aid_verif_elements(carte[i][j], &p, &e, &c, &x))
+            if (!aid_verif_elements(carte[i][j], &p, &e, &c))
                 return (0);
             j++;
         }
         i++;
     }
-    if (p != 1 || e != 1 || x !=  1 || c < 1)
+    if (p != 1 || e != 1 || c < 1)
         return (0);
     return (1);
 }
