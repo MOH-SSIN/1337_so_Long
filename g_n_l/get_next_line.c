@@ -15,7 +15,7 @@ char	*ft_cut_reste(char *str)
 		free(str);
 		return (NULL);
 	}
-	result = (char *)malloc(ft_strlen((str) - i) + 1);
+	result = (char *)malloc(ft_strlen(str) - i);
 	if (!result)
 	{
 		free(result);
