@@ -1,32 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_jeu_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/08 14:41:31 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/08 15:19:25 by mez-zahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 //une remarque x->i(verticale) et ona y->j(horizotal)
 // hit la fonction  mlx_put_image_to_window katakhose la valeure horizotal 3ade virtucale 
+void ft_chek_null(t_carte *jeu)
+{
+	if (!jeu->mlx_img)
+	{
+		ft_putstr_fd("image non valid\n",1);
+		exit(1);
+	}
+}
+
 void aid_print_images(t_carte *jeu, int x, int y)
 {
 	if (jeu->carte[x][y] == '1')
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, MUR, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, y * TAILLE, x * TAILLE);
 	}
 	else if (jeu->carte[x][y] == '0')
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, ESPACE, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, y * TAILLE, x * TAILLE);
 	}
 	else if (jeu->carte[x][y] == 'P')
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, y * TAILLE, x * TAILLE);
 	}
 	else if (jeu->carte[x][y] == 'C')
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, COLLECT, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, y * TAILLE, x * TAILLE);
 	}
 	else if (jeu->carte[x][y] == 'E')
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, DOOR, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, y * TAILLE, x * TAILLE);
 	}
 }
@@ -68,11 +94,13 @@ void	print_image_4(t_carte **jeu, char image)
 	if (image == 'S')
 	{
 		(*jeu)->mlx_img = mlx_xpm_file_to_image((*jeu)->mlx, ESPACE, &(*jeu)->largeur_carte, &(*jeu)->hauteur_carte);
+		ft_chek_null(*jeu);
 		mlx_put_image_to_window((*jeu)->mlx, (*jeu)->mlx_win, (*jeu)->mlx_img, (*jeu)->pos_ennemi_y * TAILLE, (*jeu)->pos_ennemi_x * TAILLE);
 	}
 	if (image == 'N')
 	{
 		(*jeu)->mlx_img = mlx_xpm_file_to_image((*jeu)->mlx, ENNEMI, &(*jeu)->largeur_carte, &(*jeu)->hauteur_carte);
+		ft_chek_null(*jeu);
 		mlx_put_image_to_window((*jeu)->mlx, (*jeu)->mlx_win, (*jeu)->mlx_img, (*jeu)->pos_ennemi_y * TAILLE, (*jeu)->pos_ennemi_x * TAILLE);
 	}
 

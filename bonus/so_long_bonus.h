@@ -90,4 +90,8 @@ void	position_player(t_carte **jeu);
 void	player_win(t_carte **jeu);
 void	enimi_win(t_carte **jeu);
 void	ft_sortie(t_carte **jeu);
+
+
+//
+void ft_chek_null(t_carte *jeu);
 #endif
