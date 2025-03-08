@@ -88,7 +88,7 @@ void	position_player(t_carte **jeu)
 int init_jeu(t_carte **jeu)
 {
     //initalisation dyal mlx
-	position_player(jeu);
+	// position_player(jeu);// n9dre mndirhache hna 7ite deja kn defini position player dans fonction print_image
     (*jeu)->mlx = mlx_init();
     if (!(*jeu)->mlx)
     {

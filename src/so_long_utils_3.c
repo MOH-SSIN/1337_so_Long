@@ -24,7 +24,7 @@ void print_image_2(t_carte *jeu, int i, int j)
     mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
     jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, ESPACE, &jeu->largeur_carte, &jeu->hauteur_carte);
     mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x * TAILLE);
-	print_image_3(jeu, i, j, true);
+	print_image_3(jeu, i, j, true);// hade fonction kndirha bach ima naficher player f movment li zade biha wala fnfse blasa fi 7alate kan 7ite (true n2aficher f position li zadbiha , false wa5a izide kn2fichi f emplacement dyalo )
 	jeu->pos_joueur_x += i;
 	jeu->pos_joueur_y += j;
 	if (!jeu->nbr_collect)

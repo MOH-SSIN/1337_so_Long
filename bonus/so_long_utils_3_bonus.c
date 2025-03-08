@@ -21,7 +21,9 @@ void update_move_count(t_carte *jeu)
 		return ;
 	}
 	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, 0, 0);
-	mlx_string_put(jeu->mlx, jeu->mlx_win, 5, 10, 0xFFFFFF, string_put);// 3ndi 3ibe hna !! fach knfote 1000 l7ale baniya ndire chi image tama li width dyalha kbire xwiya !!
+	// atention : hna i9dre iknone leaks !!
+	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, 1 * TAILLE,  0);// hna x howa mi7ware x et y howa mi7ware y mais les cas lo khrine la dan votr code 
+	mlx_string_put(jeu->mlx, jeu->mlx_win, 0, 0, 0xFFFFFF, string_put);// 3ndi 3ibe hna !! fach knfote 1000 l7ale baniya ndire chi image tama li width dyalha kbire xwiya !!
 	free(string_put);
 }
 

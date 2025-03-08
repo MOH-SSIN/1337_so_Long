@@ -82,7 +82,7 @@ int move_enemy(t_carte **jeu)
 {
     int next_x;
 
-    if (++frame_count < 5000)
+    if (++frame_count < 2000)
         return (0);
     frame_count = 0;
 
@@ -94,7 +94,7 @@ int move_enemy(t_carte **jeu)
         direction *= -1;
         next_x = (*jeu)->pos_ennemi_x + direction;
     }
-	// hadi ztha 7ite chek li drt 3la plyer nakafich hdi kat5ali ila enimi kano 3ndi nfse cordoner dyale player nkhroje hit lowla 7alte liya 4i mochkil dyale ila jite enimi mn jnabe ok
+	// hadi ztha 7ite chek li drt 3la plyer makafich hdi kat5ali ila enimi kano 3ndi nfse cordoner dyale player nkhroje hit lowla 7alte liya 4i mochkil dyale ila jite enimi mn jnabe ok
 	// mohime lowla ila player mcha 3nde enimi ama hadi ila enim mcha 3nd player ok
     else if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'P')
 		enimi_win(jeu);
@@ -110,8 +110,8 @@ int move_enemy(t_carte **jeu)
 int init_jeu(t_carte **jeu)
 {
     //initalisation dyal mlx
-	position_enimi(jeu);
-	position_player(jeu);
+	position_enimi(jeu);//
+	position_player(jeu);//hta hadi machi bdarora ndirha hit deja defini dans print_image(ila 7tyha ki stvolta !! hh)
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x ][(*jeu)->pos_joueur_y] == (*jeu)->carte[(*jeu)->pos_ennemi_x - 1][(*jeu)->pos_ennemi_y])
 		enimi_win(jeu);
     (*jeu)->mlx = mlx_init();
@@ -130,6 +130,7 @@ int init_jeu(t_carte **jeu)
     }
     print_images(*jeu);
 	(*jeu)->nbr_mouve = 0;// inistalisation  dyale nbr de move en 0;
+	mlx_string_put((*jeu)->mlx, (*jeu)->mlx_win, 0, 0, 0xFFFFFF, "MV:0");
     mlx_hook((*jeu)->mlx_win, 17, (1L<<0), ft_exit, jeu);
     mlx_hook((*jeu)->mlx_win, 2, (1L<<0), ft_keymove, jeu);
 	mlx_loop_hook((*jeu)->mlx, move_enemy, jeu);

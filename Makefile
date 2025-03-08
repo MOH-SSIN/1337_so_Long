@@ -16,7 +16,7 @@ BONUS_SRC_FILE = bonus/so_long_bonus.c g_n_l/get_next_line.c g_n_l/get_next_line
 OBJ_FILE = $(SRC_FILE:.c=.o)
 BONUS_OBJ_FILE = $(BONUS_SRC_FILE:.c=.o)
 
-HEADER = so_long.h g_n_l/get_next_line.h
+HEADER = src/so_long.h g_n_l/get_next_line.h bonus/so_long_bonus.h
 BONUS_HEADER =  bonus/so_long_bonus.h g_n_l/get_next_line.h
 
 CC = cc
