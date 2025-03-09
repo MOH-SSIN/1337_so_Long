@@ -4,25 +4,15 @@ void	print_image_3(t_carte *jeu, int i, int j, bool print)
 {
 	mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
 	if (i == 1 && j == 0)
-	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM, &jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
 	else if  (i == -1 && j == 0)
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP, &jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
 	}
 	else if  (i == 0 && j == 1)
-	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT, &jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
 	else if  (i == 0 && j == -1)
-	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_LEFT, &jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
 	if (print)
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, (jeu->pos_joueur_y  + j)* TAILLE, (jeu->pos_joueur_x + i) * TAILLE);
 	else
@@ -33,8 +23,6 @@ void print_image_2(t_carte *jeu, int i, int j)
 {
     mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
     jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, ESPACE, &jeu->largeur_carte, &jeu->hauteur_carte);
-	//faire une chek
-	ft_chek_null(jeu);
     mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x * TAILLE);
 	print_image_3(jeu, i, j, true);// hade fonction kndirha bach ima naficher player f movment li zade biha wala fnfse blasa fi 7alate kan 7ite (true n2aficher f position li zadbiha , false wa5a izide kn2fichi f emplacement dyalo )
 	jeu->pos_joueur_x += i;

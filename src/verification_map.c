@@ -76,25 +76,35 @@ int verif_elements(char **carte)
 
 int est_bloque(char **carte)
 {
-	char	**copie ;
-	int	i ;
-	int	j;
+    char **copie;
+    int i, j;
 
-	copie = copie_map(carte);
-	if (!copie)
-		return (0);
-	// trouver position dyal player
-	if (get_position_player(copie, &i, &j))
-		ft_marque(copie, i, j);
-	//apres kanvirifier wach E et C wach atteignables
-	if (ft_presence_elemntes(copie))
-	{
-		free_map(copie);
-		return (1);
-	}
-	free_map(copie);
-	return (0);
+    copie = copie_map(carte);
+    if (!copie)
+        return (0);
+
+    if (get_position_player(copie, &i, &j))
+        ft_marque(copie, i, j);
+
+    i = 0;
+    while (copie[i])
+    {
+        j = 0;
+        while (copie[i][j])
+        {
+            if (copie[i][j] == 'C' && copie[i][j] != 'V')
+            {
+                free(copie);
+                return (0); // collecte bloquer
+            }
+            j++;
+        }
+        i++;
+    }
+    free(copie);
+    return (1); // colecte acessible
 }
+
 
 int verfication(t_carte *jeu)
 {
