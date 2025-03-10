@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_utils_2_bonus.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 15:10:36 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/10 15:10:37 by mez-zahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 int aid_verif_elements(char element,int *p, int *e, int *c, int *x)
@@ -31,6 +43,11 @@ int get_position_player(char **copie, int *i, int *j)
     }
     return (0);// hna mal9itoch
 }
+void	ft_chek_etput(t_carte *jeu, int x, int y)
+{
+	ft_chek_null(jeu);
+	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, y * TAILLE, x * TAILLE);
+}
 
 int ft_presence_elemntes(char **copie)
 {
@@ -59,5 +76,5 @@ int ft_presence_elemntes(char **copie)
         }
         i++;
     }
-    return (c == 0 && e == 0 && x == 0);// 1 ila les elemnet('E' et 'C') makiniche
+    return (c == 0 && e == 0 && x == 0);
 }

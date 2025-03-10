@@ -1,45 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_utils_3_bonus.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 15:10:44 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/10 15:10:45 by mez-zahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
-void update_move_count(t_carte *jeu)
-{
-	char *count_str;
-	char *string_put;
 
-	count_str = ft_itoa(jeu->nbr_mouve);
-	if (!count_str)
-		return ;
-	string_put = ft_strjoin("MV:", count_str);
-	free(count_str);
+void	update_move_count(t_carte *jeu)
+{
+	char	*string_put;
+
+	string_put = convertir_nbr_en_str(jeu->nbr_mouve);
 	if (!string_put)
-		return ;
-	if (jeu->mlx_img)
-	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
-	jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, MUR_2, &jeu->largeur_carte, &jeu->hauteur_carte);
-	if (!jeu->mlx_img)
 	{
-		free(string_put);
-		return ;
+		mlx_destroy_window(jeu->mlx, jeu->mlx_win);
+		free_jeu(jeu);
+		exit(1);
 	}
-	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, 0, 0);
-	// atention : hna i9dre iknone leaks !!
-	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, 1 * TAILLE,  0);// hna x howa mi7ware x et y howa mi7ware y mais les cas lo khrine la dan votr code 
-	mlx_string_put(jeu->mlx, jeu->mlx_win, 0, 0, 0xFFFFFF, string_put);// 3ndi 3ibe hna !! fach knfote 1000 l7ale baniya ndire chi image tama li width dyalha kbire xwiya !!
+	mettre_a_jour_image(jeu);
+	if (jeu->mlx_img)
+		mlx_string_put(jeu->mlx, jeu->mlx_win, 0, 0, 0xFFFFFF, string_put);
 	free(string_put);
 }
 
+
+
+
 void	print_image_3(t_carte *jeu, int i, int j, bool print)
 {
-	mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
+	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
 	if (i == 1 && j == 0)
+	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
 	else if  (i == -1 && j == 0)
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
 	}
 	else if  (i == 0 && j == 1)
+	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
 	else if  (i == 0 && j == -1)
+	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_LEFT, &jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
 	if (print)
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, (jeu->pos_joueur_y  + j)* TAILLE, (jeu->pos_joueur_x + i) * TAILLE);
 	else
@@ -48,8 +64,9 @@ void	print_image_3(t_carte *jeu, int i, int j, bool print)
 
 void print_image_2(t_carte *jeu, int i, int j)
 {
-    mlx_destroy_image(jeu->mlx, jeu->mlx_img); //knsuprimer image li precedente
+    mlx_destroy_image(jeu->mlx, jeu->mlx_img);
     jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, ESPACE, &jeu->largeur_carte, &jeu->hauteur_carte);
+	ft_chek_null(jeu);
     mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x * TAILLE);
 	print_image_3(jeu, i, j, true);
     update_move_count(jeu);
@@ -61,14 +78,13 @@ void print_image_2(t_carte *jeu, int i, int j)
 
 void	ft_move(t_carte **jeu, int i, int j)
 {
-	// hde chek 3la pleyer dyali ila kano 3ndo les cordoner b7ale enimi 7ite knt kl9a mochkil ila jito mn jnabe
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'X')
 		enimi_win(jeu);
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == '1' 
 			|| ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'E' && (*jeu)->nbr_collect))
 	{
 		print_image_3(*jeu, i, j, false);
-		return ;// hade returne drtha hite fach kat print_image_3 5asni nkhroje bach print_image_2 mt5dmche onwli d5le f7ite hh
+		return ;
 	}
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == '0'
 		|| (*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'C')
@@ -80,21 +96,20 @@ void	ft_move(t_carte **jeu, int i, int j)
 	}
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x + i][(*jeu)->pos_joueur_y + j] == 'E' && !(*jeu)->nbr_collect)
 		player_win(jeu);
-    // ft_print_movement(*jeu); 4adi n7ydha ondire hdi -> (*jeu)->nbr_mouve ++;
 	(*jeu)->nbr_mouve ++;
 	print_image_2(*jeu, i, j);
 }
 
 int	ft_keymove(int click, t_carte **jeu)
 {
-	if (click == 126 || click == 13)//haut
-		ft_move(jeu, -1, 0);// mi7ware i 4adi tn9se mais j 4atb9a fix
-	else if (click == 125 || click == 1)// bas
-		ft_move(jeu, 1, 0);// mi7ware i 4adi tzade mais j 4atb9a fix
-	else if (click == 124 || click == 2)// droit
-		ft_move(jeu, 0, 1);//mi7ware i fix tzade mais j 4atzade
-	else if (click == 123 || click == 0)// gauche
-		ft_move(jeu, 0, -1);//mi7ware i fix tzade mais j 4atn9se
+	if (click == 126 || click == 13)
+		ft_move(jeu, -1, 0);
+	else if (click == 125 || click == 1)
+		ft_move(jeu, 1, 0);
+	else if (click == 124 || click == 2)
+		ft_move(jeu, 0, 1);
+	else if (click == 123 || click == 0)
+		ft_move(jeu, 0, -1);
     else if (click == 53)
 		ft_sortie(jeu);
 	return (0);

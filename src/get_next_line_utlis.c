@@ -1,16 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utlis.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 12:52:04 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/09 09:37:46 by mez-zahi         ###   ########.fr       */
+/*   Created: 2025/03/10 15:12:04 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/10 15:12:05 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	*ft_free(char *ptr1, char *ptr2)
+{
+	free(ptr1);
+	free(ptr2);
+	ptr1 = NULL;
+	ptr2 = NULL;
+	return (NULL);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*ptr;
+	size_t	i;
+	size_t	size;
+
+	i = -1;
+	size = ft_strlen(s);
+	ptr = (char *)malloc(size + 1);
+	if (!ptr)
+		return (NULL);
+	while (++i < size)
+		ptr[i] = s[i];
+	ptr[i] = '\0';
+	return (ptr);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -38,4 +74,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		ptr[i++] = s2[j++];
 	ptr[i] = '\0';
 	return (ptr);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while ((char)c != *s)
+	{
+		if (!*s)
+			return (0);
+		s++;
+	}
+	return ((char *)s);
 }

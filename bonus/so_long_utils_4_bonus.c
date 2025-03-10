@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_utils_4_bonus.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 15:10:49 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/10 15:10:50 by mez-zahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 
@@ -5,6 +17,13 @@ void print_door_out(t_carte *jeu)
 {
 	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
 	jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, DOOR_OPEN, &jeu->largeur_carte, &jeu->hauteur_carte);
+    if(!jeu->mlx_img)
+    {
+        if(jeu->mlx_win)
+            mlx_destroy_window(jeu->mlx, jeu->mlx_win);
+        free_jeu(jeu);
+		exit(1);
+    }
 	mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img, jeu->pos_door_y * TAILLE, jeu->pos_door_x * TAILLE);
 }
 

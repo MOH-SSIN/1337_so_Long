@@ -1,37 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 08:02:25 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/10 15:08:07 by mez-zahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
 #include "../libft/libft.h"
-#include "../g_n_l/get_next_line.h"
 #include <stdbool.h>
 #include <fcntl.h>
 #include "mlx.h"
 #include "stdio.h"
 
 # define TAILLE 50
-// # define ESPACE "assets/baground.xpm"//0
 # define ESPACE "image_1/baground.xpm"
-// # define ESPACE_2 "image/baground.xpm"//0
-# define COLLECT "image_1/Collect.xpm"//C
-// # define DOOR "image/Close_Door.xpm"//E
-# define DOOR "image_1/door_close.xpm"//E
-// # define DOOR_OPEN "image/Open_Door.xpm"//E
-# define DOOR_OPEN "image_1/door_open.xpm"//E
-// # define JOUEUR_BOTTOM "image/Pac-Man_down.xpm"
+# define COLLECT "image_1/Collect.xpm"
+# define DOOR "image_1/door_close.xpm"
+# define DOOR_OPEN "image_1/door_open.xpm"
 # define JOUEUR_BOTTOM "image_1/pac_man_botom.xpm"
-// # define JOUEUR_TOP "image/Pac-Man_up.xpm"//P
-# define JOUEUR_TOP "image_1/pac_man_top.xpm"//P
-// # define JOUEUR_RIGHT "image/Pac-Man_right.xpm"//P
-# define JOUEUR_RIGHT "image_1/pac_man_right.xpm"//P
-// # define JOUEUR_LEFT "image/Pac-Man_left.xpm"//P
-# define JOUEUR_LEFT "image_1/pac_man_left.xpm"//P
-# define MUR "image_1/wall.xpm"//1
-# define MUR_2 "image_1/wall.xpm"//1
-# define ENNEMI "image_1/Enemy.xpm"//
+# define JOUEUR_TOP "image_1/pac_man_top.xpm"
+# define JOUEUR_RIGHT "image_1/pac_man_right.xpm"
+# define JOUEUR_LEFT "image_1/pac_man_left.xpm"
+# define MUR "image_1/wall.xpm"
+# define MUR_2 "image_1/wall.xpm"
+# define ENNEMI "image_1/Enemy.xpm"
 
-// 
-static int direction = 1;// hadi bach ncontroler movment dyale enimi dans direction x-> i
-static int frame_count = 0;// hadi drtha bach ncoteoler c=vitese dyale enimi
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10000000
+# endif
 
 typedef struct s_carte
 {
@@ -53,51 +56,55 @@ typedef struct s_carte
     int     nbr_mouve;
 } t_carte;
 
-// init_carte.c
 char    **charger_carte(char *av[], t_carte **jeu);
 
 
-//free_stack.c
 void    free_jeu(t_carte *jeu);
 void    free_map(char **map);
 void	free_copy_map(char **copie, int j);
-// Fonctions de gestion du jeu
+void	free_map_copy(char **map);
+
 bool    initialiser_jeu(t_carte **jeu);
 
 int verfication(t_carte *jeu);
 
-//initalisation de jeu
 int init_jeu(t_carte **jeu);
 
-// so_long_utlis_1.c
 int ft_exit(t_carte **jeu);
 int ft_keymove(int click, t_carte **jeu);
 char **copie_map(char **carte);
 void ft_marque(char **carte, int i, int j);
 
-// so_long_utlis_2.c
 int aid_verif_elements(char element,int *p, int *e, int *c);
 int get_position_player(char **copie, int *i, int *j);
 int ft_presence_elemntes(char **copie);
 
-//so_long_utils_4.c
+
 void print_door_out(t_carte *jeu);
 void    ft_print_movement(t_carte *jeu);
 
-//so_long_utils_5.c
 void	player_win(t_carte **jeu);
 void	enimi_win(t_carte **jeu);
 void	ft_sortie(t_carte **jeu);
 
 
-//
-void ft_marque_collect(char **carte, int i, int j);
-void ft_marque_door(char **carte, int i, int j);
+void ft_chek_null(t_carte *jeu);
 
-//verfication utlis
+
 int verfi_rectan(char **carte);
 int verif_murs(char **carte);
 int verif_elements(char **carte);
 int collecte_est_bloque(char **carte);
 int door_est_bloque(char **carte);
+
+
+void ft_marque_collect(char **carte, int i, int j);
+void ft_marque_door(char **carte, int i, int j);
+
+char	*get_next_line(int fd);
+void	*ft_free(char *ptr1, char *ptr2);
+
+void ft_chek_null(t_carte *jeu);
+
+
 #endif

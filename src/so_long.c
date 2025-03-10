@@ -1,27 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/08 14:41:42 by mez-zahi          #+#    #+#             */
+/*   Updated: 2025/03/10 13:40:20 by mez-zahi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-//pour print map
-// void	print_map(t_carte *jeu)
-// {
-// 	int i = 0;
-// 	int j;
-// 	while (jeu->carte[i])
-// 	{
-// 		j = 0;
-// 		while (jeu->carte[i][j])
-// 		{
-// 			printf("%c",jeu->carte[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// }
-
-// void mohcine()
-// {
-//     system("leaks ./so_long");
-// }
 void	ft_so_long(t_carte **jeu)
 {
 	if (!verfication(*jeu))
@@ -32,28 +22,29 @@ void	ft_so_long(t_carte **jeu)
 	}
 	if (!init_jeu(jeu))
 	{
-		mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);//hna n9dre njm3e hdo fune fois mchtarkine fhde les line !!
-		free_jeu(*jeu);
+        if((*jeu)->mlx && (*jeu)->mlx_win)
+		    mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);
 		exit(1);
 	}
 	
 }
-
+void mohcine()
+{
+    system("leaks so_long");
+}
 int main(int argc, char **argv)
 {
     t_carte *jeu;
-    // atexit(mohcine);
-    // hna verification des argumente 
+
+    atexit(mohcine);
     if (argc != 2 || !ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
     {
         ft_putstr_fd("Erreur dans argumente!\n", 2);
         return (1);
     }
-    //apes kan alouer la memoire la structure de jeu
     jeu = (t_carte *)malloc((sizeof(t_carte)));
     if (!jeu)
         return (1);
-    // kan carger la carte
     jeu->carte = charger_carte(argv, &jeu);
     if (!jeu->carte)
     {

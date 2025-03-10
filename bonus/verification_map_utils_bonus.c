@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verification_map_utils.c                           :+:      :+:    :+:   */
+/*   verification_map_utils_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:20 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 14:09:19 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:23:47 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int verfi_rectan(char **carte)
 {
@@ -29,7 +29,7 @@ int verfi_rectan(char **carte)
     }
     return (1);
 }
-
+//verif_murs wach dayra b les 1
 int verif_murs(char **carte)
 {
     int largeur;
@@ -56,7 +56,7 @@ int verif_murs(char **carte)
     }
     return (1);
 }
-
+// verification dyale element ok
 int verif_elements(char **carte)
 {
     int i;
@@ -64,23 +64,25 @@ int verif_elements(char **carte)
     int p;
     int e;
     int c;
+    int x;
 
     p = 0;
     e = 0;
     c = 0;
     i = 0;
+    x = 0;
     while (carte[i])
     {
         j = 0;
         while (carte[i][j])
         {
-            if (!aid_verif_elements(carte[i][j], &p, &e, &c))
+            if (!aid_verif_elements(carte[i][j], &p, &e, &c, &x))
                 return (0);
             j++;
         }
         i++;
     }
-    if (p != 1 || e != 1 || c < 1)
+    if (p != 1 || e != 1 || x !=  1 || c < 1)
         return (0);
     return (1);
 }
@@ -105,12 +107,12 @@ int collecte_est_bloque(char **carte)
             if (copie[i][j] == 'C' && copie[i][j] != 'V')
             {
                 free_map_copy(copie);
-                return (0);
+                return (0); // collecte bloquer
             }
         }
     }
     free_map_copy(copie);
-    return (1);
+    return (1); // colecte acessible
 }
 
 int door_est_bloque(char **carte)
@@ -122,8 +124,10 @@ int door_est_bloque(char **carte)
 	copie = copie_map(carte);
 	if (!copie)
 		return (0);
+	// trouver position dyal player
 	if (get_position_player(copie, &i, &j))
 		ft_marque_door(copie, i, j);
+	//apres kanvirifier wach E et C wach atteignables
 	if (ft_presence_elemntes(copie))
 	{
 		free_map_copy(copie);
