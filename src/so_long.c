@@ -18,6 +18,10 @@
 // 	}
 // }
 
+// void mohcine()
+// {
+//     system("leaks ./so_long");
+// }
 void	ft_so_long(t_carte **jeu)
 {
 	if (!verfication(*jeu))
@@ -38,6 +42,7 @@ void	ft_so_long(t_carte **jeu)
 int main(int argc, char **argv)
 {
     t_carte *jeu;
+    // atexit(mohcine);
     // hna verification des argumente 
     if (argc != 2 || !ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
     {

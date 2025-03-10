@@ -4,14 +4,15 @@ BONUS_NAME = so_long_bonus
 SRC_FILE = src/so_long.c g_n_l/get_next_line.c g_n_l/get_next_line_utlis.c \
             src/verification_map.c src/init_jeu.c src/init_carte.c \
             src/free_stack.c src/so_long_utils_1.c src/so_long_utils_2.c \
-            src/so_long_utils_3.c src/so_long_utils_4.c src/so_long_utils_5.c
+            src/so_long_utils_3.c src/so_long_utils_4.c src/so_long_utils_5.c\
+			src/verification_map_utils.c\
 
 BONUS_SRC_FILE = bonus/so_long_bonus.c g_n_l/get_next_line.c g_n_l/get_next_line_utlis.c \
                  bonus/verification_map_bonus.c bonus/init_jeu_bonus.c \
                  bonus/init_carte_bonus.c bonus/free_stack_bonus.c \
                  bonus/so_long_utils_1_bonus.c bonus/so_long_utils_2_bonus.c \
                  bonus/so_long_utils_3_bonus.c bonus/so_long_utils_4_bonus.c \
-                 bonus/so_long_utils_5_bonus.c
+                 bonus/so_long_utils_5_bonus.c \
 
 OBJ_FILE = $(SRC_FILE:.c=.o)
 BONUS_OBJ_FILE = $(BONUS_SRC_FILE:.c=.o)

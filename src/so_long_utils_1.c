@@ -8,15 +8,25 @@ int	ft_exit(t_carte **jeu)
 	return (0);
 }
 
-void ft_marque(char **carte, int i, int j)
+void ft_marque_collect(char **carte, int i, int j)
 {
     if (carte[i][j] == '1' || carte[i][j] == 'V' || carte[i][j] == 'E')
         return;
     carte[i][j] = 'V';
-    ft_marque(carte, i + 1, j); // Bas
-    ft_marque(carte, i - 1, j); // Haut
-    ft_marque(carte, i, j + 1); // Droite
-    ft_marque(carte, i, j - 1); // Gauche
+    ft_marque_collect(carte, i + 1, j); // Bas
+    ft_marque_collect(carte, i - 1, j); // Haut
+    ft_marque_collect(carte, i, j + 1); // Droite
+    ft_marque_collect(carte, i, j - 1); // Gauche
+}
+void ft_marque_door(char **carte, int i, int j)
+{
+    if (carte[i][j] == '1' || carte[i][j] == 'V')
+        return;
+    carte[i][j] = 'V';
+    ft_marque_door(carte, i + 1, j); // Bas
+    ft_marque_door(carte, i - 1, j); // Haut
+    ft_marque_door(carte, i, j + 1); // Droite
+    ft_marque_door(carte, i, j - 1); // Gauche
 }
 char **copie_map(char **carte)
 {

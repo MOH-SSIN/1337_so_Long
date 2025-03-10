@@ -88,4 +88,16 @@ void    ft_print_movement(t_carte *jeu);
 void	player_win(t_carte **jeu);
 void	enimi_win(t_carte **jeu);
 void	ft_sortie(t_carte **jeu);
+
+
+//
+void ft_marque_collect(char **carte, int i, int j);
+void ft_marque_door(char **carte, int i, int j);
+
+//verfication utlis
+int verfi_rectan(char **carte);
+int verif_murs(char **carte);
+int verif_elements(char **carte);
+int collecte_est_bloque(char **carte);
+int door_est_bloque(char **carte);
 #endif
