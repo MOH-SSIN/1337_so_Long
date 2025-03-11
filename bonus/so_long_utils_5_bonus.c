@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:11:49 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 15:11:50 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/11 09:59:25 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	player_win(t_carte **jeu)
 {
 	ft_putstr_fd("You Win\n", 1);
-	mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);//Fermer fenetre graphique cree par MiniLibX
+	mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);
 	free_jeu(*jeu);
 	exit(0);
 }

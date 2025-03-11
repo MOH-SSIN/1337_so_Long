@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:20 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 11:23:47 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:06:03 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int verfi_rectan(char **carte)
     }
     return (1);
 }
-//verif_murs wach dayra b les 1
 int verif_murs(char **carte)
 {
     int largeur;
@@ -56,7 +55,6 @@ int verif_murs(char **carte)
     }
     return (1);
 }
-// verification dyale element ok
 int verif_elements(char **carte)
 {
     int i;
@@ -69,9 +67,9 @@ int verif_elements(char **carte)
     p = 0;
     e = 0;
     c = 0;
-    i = 0;
     x = 0;
-    while (carte[i])
+    i = -1;
+    while (carte[++i])
     {
         j = 0;
         while (carte[i][j])
@@ -80,7 +78,6 @@ int verif_elements(char **carte)
                 return (0);
             j++;
         }
-        i++;
     }
     if (p != 1 || e != 1 || x !=  1 || c < 1)
         return (0);
