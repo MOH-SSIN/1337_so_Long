@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:14:09 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 14:27:20 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/11 09:32:40 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@ char *lire_carte(int fd)
     if (!line)
         return (NULL);
     temp_line = get_next_line(fd);
-    while (temp_line)
-    {
+	while (temp_line)
+	{
+		if (ft_strncmp(temp_line, "\n", 1) == 0)
+		{
+			free(temp);
+			free(temp_line);
+			return (NULL);
+		}
         temp = ft_strjoin(line, temp_line);
         free(temp_line);
         free(line);
