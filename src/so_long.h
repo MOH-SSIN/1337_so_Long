@@ -13,11 +13,11 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "../libft/libft.h"
-#include <stdbool.h>
-#include <fcntl.h>
-#include "mlx.h"
-#include "stdio.h"
+# include "../libft/libft.h"
+# include "mlx.h"
+# include "stdio.h"
+# include <fcntl.h>
+# include <stdbool.h>
 
 # define TAILLE 50
 # define ESPACE "image_1/baground.xpm"
@@ -38,73 +38,67 @@
 
 typedef struct s_carte
 {
-    int     direction;
-    void    *mlx;
-    void    *mlx_win;
-    void    *mlx_img;
-    char    **carte;
-    int     nbr_collect;
-    int     largeur_carte;
-    int     hauteur_carte;
-    int     pos_joueur_x;
-    int     pos_joueur_y;
-    int     pos_ennemi_x;
-    int     pos_ennemi_y;
-    bool    partie_terminee;
-    int     pos_door_x;
-    int     pos_door_y;
-    int     nbr_mouve;
-} t_carte;
+	int		direction;
+	void	*mlx;
+	void	*mlx_win;
+	void	*mlx_img;
+	char	**carte;
+	int		nbr_collect;
+	int		largeur_carte;
+	int		hauteur_carte;
+	int		pos_joueur_x;
+	int		pos_joueur_y;
+	int		pos_ennemi_x;
+	int		pos_ennemi_y;
+	bool	partie_terminee;
+	int		pos_door_x;
+	int		pos_door_y;
+	int		nbr_mouve;
+}			t_carte;
 
-char    **charger_carte(char *av[], t_carte **jeu);
+char		**charger_carte(char *av[], t_carte **jeu);
 
+void		free_jeu(t_carte *jeu);
+void		free_map(char **map);
+void		free_copy_map(char **copie, int j);
+void		free_map_copy(char **map);
 
-void    free_jeu(t_carte *jeu);
-void    free_map(char **map);
-void	free_copy_map(char **copie, int j);
-void	free_map_copy(char **map);
+bool		initialiser_jeu(t_carte **jeu);
 
-bool    initialiser_jeu(t_carte **jeu);
+int			verfication(t_carte *jeu);
 
-int verfication(t_carte *jeu);
+int			init_jeu(t_carte **jeu);
 
-int init_jeu(t_carte **jeu);
+int			ft_exit(t_carte **jeu);
+int			ft_keymove(int click, t_carte **jeu);
+char		**copie_map(char **carte);
+void		ft_marque(char **carte, int i, int j);
 
-int ft_exit(t_carte **jeu);
-int ft_keymove(int click, t_carte **jeu);
-char **copie_map(char **carte);
-void ft_marque(char **carte, int i, int j);
+int			aid_verif_elements(char element, int *p, int *e, int *c);
+int			get_position_player(char **copie, int *i, int *j);
+int			ft_presence_elemntes(char **copie);
 
-int aid_verif_elements(char element,int *p, int *e, int *c);
-int get_position_player(char **copie, int *i, int *j);
-int ft_presence_elemntes(char **copie);
+void		print_door_out(t_carte *jeu);
+void		ft_print_movement(t_carte *jeu);
 
+void		player_win(t_carte **jeu);
+void		enimi_win(t_carte **jeu);
+void		ft_sortie(t_carte **jeu);
 
-void print_door_out(t_carte *jeu);
-void    ft_print_movement(t_carte *jeu);
+void		ft_chek_null(t_carte *jeu);
 
-void	player_win(t_carte **jeu);
-void	enimi_win(t_carte **jeu);
-void	ft_sortie(t_carte **jeu);
+int			verfi_rectan(char **carte);
+int			verif_murs(char **carte);
+int			verif_elements(char **carte);
+int			collecte_est_bloque(char **carte);
+int			door_est_bloque(char **carte);
 
+void		ft_marque_collect(char **carte, int i, int j);
+void		ft_marque_door(char **carte, int i, int j);
 
-void ft_chek_null(t_carte *jeu);
+char		*get_next_line(int fd);
+void		*ft_free(char *ptr1, char *ptr2);
 
-
-int verfi_rectan(char **carte);
-int verif_murs(char **carte);
-int verif_elements(char **carte);
-int collecte_est_bloque(char **carte);
-int door_est_bloque(char **carte);
-
-
-void ft_marque_collect(char **carte, int i, int j);
-void ft_marque_door(char **carte, int i, int j);
-
-char	*get_next_line(int fd);
-void	*ft_free(char *ptr1, char *ptr2);
-
-void ft_chek_null(t_carte *jeu);
-
+void		ft_chek_null(t_carte *jeu);
 
 #endif

@@ -3,34 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:59 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 10:06:37 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:35:09 by idahhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void free_map(char **map)
+void	free_map(char **map)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (map[++i])
-        free(map[i]);
-    free(map);
+	i = -1;
+	while (map[++i])
+		free(map[i]);
+	free(map);
 }
 
-void free_jeu(t_carte *jeu)
+void	free_jeu(t_carte *jeu)
 {
 	if (!jeu)
-		return;
+		return ;
 	if (jeu->carte)
 		free_map(jeu->carte);
 	free(jeu);
 }
-
 
 void	free_copy_map(char **copie, int j)
 {
@@ -43,12 +42,13 @@ void	free_copy_map(char **copie, int j)
 		free(temp[j]);
 	free(temp);
 }
+
 void	free_map_copy(char **map)
 {
 	int	i;
 
 	if (!map)
-		return;
+		return ;
 	i = 0;
 	while (map[i])
 	{

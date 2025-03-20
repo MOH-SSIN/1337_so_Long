@@ -22,38 +22,37 @@ void	ft_so_long(t_carte **jeu)
 	}
 	if (!init_jeu(jeu))
 	{
-        if((*jeu)->mlx && (*jeu)->mlx_win)
-		    mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);
+		if ((*jeu)->mlx && (*jeu)->mlx_win)
+			mlx_destroy_window((*jeu)->mlx, (*jeu)->mlx_win);
 		exit(1);
 	}
-	
 }
 
-void mohcine()
+void	mohcine(void)
 {
-    system("leaks so_long");
+	system("leaks so_long");
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_carte *jeu;
-    
-    atexit(mohcine);
-    if (argc != 2 || !ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-    {
-        ft_putstr_fd("Erreur dans argumente!\n", 2);
-        return (1);
-    }
-    jeu = (t_carte *)malloc((sizeof(t_carte)));
-    if (!jeu)
-        return (1);
-    jeu->carte = charger_carte(argv, &jeu);
-    if (!jeu->carte)
-    {
-        ft_putstr_fd("Erreur de chargement!\n", 2);
-        free(jeu);
-        return (1);
-    }
+	t_carte	*jeu;
+
+	atexit(mohcine);
+	if (argc != 2 || !ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	{
+		ft_putstr_fd("Erreur dans argumente!\n", 2);
+		return (1);
+	}
+	jeu = (t_carte *)malloc((sizeof(t_carte)));
+	if (!jeu)
+		return (1);
+	jeu->carte = charger_carte(argv, &jeu);
+	if (!jeu->carte)
+	{
+		ft_putstr_fd("Erreur de chargement!\n", 2);
+		free(jeu);
+		return (1);
+	}
 	ft_so_long(&jeu);
-    free_jeu(jeu);
+	free_jeu(jeu);
 }

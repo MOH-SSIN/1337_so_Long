@@ -12,6 +12,7 @@
 
 #include "libft.h"
 #include "stdio.h"
+
 static int	ft_ft(int sign)
 {
 	if (sign == 1)
@@ -19,11 +20,11 @@ static int	ft_ft(int sign)
 	return (0);
 }
 
-static void ft_ptint_error(long result)
+static void	ft_ptint_error(long result)
 {
-	if (result > INT_MAX )
+	if (result > INT_MAX)
 	{
-		write(1,"Error\n",6);
+		write(1, "Error\n", 6);
 		exit(1);
 	}
 }
@@ -56,5 +57,3 @@ long	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-
-
