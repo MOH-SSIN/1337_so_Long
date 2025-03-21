@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils_4_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:49 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:44:42 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:58:14 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,21 @@ void	position_player(t_carte **jeu)
 			(j)++;
 		}
 		(i)++;
+	}
+}
+
+void	aid_print_images_2(t_carte *jeu, int x, int y)
+{
+	if (jeu->carte[x][y] == 'C')
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, COLLECT,
+				&jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_etput(jeu, x, y);
+	}
+	else if (jeu->carte[x][y] == 'E')
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, DOOR,
+				&jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_etput(jeu, x, y);
 	}
 }

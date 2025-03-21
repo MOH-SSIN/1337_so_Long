@@ -3,31 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:38 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:36:52 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:46:21 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_image_3(t_carte *jeu, int i, int j, bool print)
+void	print_joueur(t_carte *jeu, int i, int j, bool print)
 {
-	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
-	if (i == 1 && j == 0)
-	{
-		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM,
-				&jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
-	else if (i == -1 && j == 0)
-	{
-		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP,
-				&jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
-	else if (i == 0 && j == 1)
+	if (i == 0 && j == 1)
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT,
 				&jeu->largeur_carte, &jeu->hauteur_carte);
@@ -45,6 +32,24 @@ void	print_image_3(t_carte *jeu, int i, int j, bool print)
 	else
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img,
 			jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x * TAILLE);
+}
+
+void	print_image_3(t_carte *jeu, int i, int j, bool print)
+{
+	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
+	if (i == 1 && j == 0)
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM,
+				&jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
+	else if (i == -1 && j == 0)
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP,
+				&jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
+	print_joueur(jeu, i, j, print);
 }
 
 void	print_image_2(t_carte *jeu, int i, int j)

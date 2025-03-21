@@ -3,48 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils_3_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:44 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:42:28 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/21 15:06:46 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	update_move_count(t_carte *jeu)
+void	print_joueur(t_carte *jeu, int i, int j, bool print)
 {
-	char	*string_put;
-
-	string_put = convertir_nbr_en_str(jeu->nbr_mouve);
-	if (!string_put)
-	{
-		mlx_destroy_window(jeu->mlx, jeu->mlx_win);
-		free_jeu(jeu);
-		exit(1);
-	}
-	mettre_a_jour_image(jeu);
-	if (jeu->mlx_img)
-		mlx_string_put(jeu->mlx, jeu->mlx_win, 0, 0, 0xFFFFFF, string_put);
-	free(string_put);
-}
-
-void	print_image_3(t_carte *jeu, int i, int j, bool print)
-{
-	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
-	if (i == 1 && j == 0)
-	{
-		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM,
-				&jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
-	else if (i == -1 && j == 0)
-	{
-		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP,
-				&jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_null(jeu);
-	}
-	else if (i == 0 && j == 1)
+	if (i == 0 && j == 1)
 	{
 		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_RIGHT,
 				&jeu->largeur_carte, &jeu->hauteur_carte);
@@ -62,6 +32,24 @@ void	print_image_3(t_carte *jeu, int i, int j, bool print)
 	else
 		mlx_put_image_to_window(jeu->mlx, jeu->mlx_win, jeu->mlx_img,
 			jeu->pos_joueur_y * TAILLE, jeu->pos_joueur_x * TAILLE);
+}
+
+void	print_image_3(t_carte *jeu, int i, int j, bool print)
+{
+	mlx_destroy_image(jeu->mlx, jeu->mlx_img);
+	if (i == 1 && j == 0)
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_BOTTOM,
+				&jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
+	else if (i == -1 && j == 0)
+	{
+		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, JOUEUR_TOP,
+				&jeu->largeur_carte, &jeu->hauteur_carte);
+		ft_chek_null(jeu);
+	}
+	print_joueur(jeu, i, j, print);
 }
 
 void	print_image_2(t_carte *jeu, int i, int j)

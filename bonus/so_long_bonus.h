@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:18 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 15:10:19 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:06:37 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ int			ft_exit(t_carte **jeu);
 int			ft_keymove(int click, t_carte **jeu);
 char		**copie_map(char **carte);
 void		ft_marque(char **carte, int i, int j);
+void		aid_print_images_2(t_carte *jeu, int x, int y);
 
 int			aid_verif_elements(char element, int *p, int *e, int *c, int *x);
 int			get_position_player(char **copie, int *i, int *j);
 int			ft_presence_elemntes(char **copie);
+void		update_move_count(t_carte *jeu);
 
 void		print_door_out(t_carte *jeu);
 void		ft_print_movement(t_carte *jeu);

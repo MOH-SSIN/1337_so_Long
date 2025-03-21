@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:42 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/10 13:22:24 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:26:02 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,29 @@ int	get_position_player(char **copie, int *i, int *j)
 		(*i)++;
 	}
 	return (0);
+}
+
+void	position_player(t_carte **jeu)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while ((*jeu)->carte[i])
+	{
+		j = 0;
+		while ((*jeu)->carte[i][j])
+		{
+			if ((*jeu)->carte[i][j] == 'P')
+			{
+				(*jeu)->pos_joueur_x = i;
+				(*jeu)->pos_joueur_y = j;
+				return ;
+			}
+			(j)++;
+		}
+		(i)++;
+	}
 }
 
 int	ft_presence_elemntes(char **copie)

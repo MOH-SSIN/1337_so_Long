@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils_2_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:36 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:46:13 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/21 15:05:15 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	ft_presence_elemntes(char **copie)
 	int	e;
 	int	x;
 
-	i = 0;
+	i = -1;
 	c = 0;
 	e = 0;
 	x = 0;
-	while (copie[i])
+	while (copie[++i])
 	{
 		j = 0;
 		while (copie[i][j])
@@ -76,7 +76,22 @@ int	ft_presence_elemntes(char **copie)
 				x++;
 			j++;
 		}
-		i++;
 	}
 	return (c == 0 && e == 0 && x == 0);
+}
+void	update_move_count(t_carte *jeu)
+{
+	char	*string_put;
+
+	string_put = convertir_nbr_en_str(jeu->nbr_mouve);
+	if (!string_put)
+	{
+		mlx_destroy_window(jeu->mlx, jeu->mlx_win);
+		free_jeu(jeu);
+		exit(1);
+	}
+	mettre_a_jour_image(jeu);
+	if (jeu->mlx_img)
+		mlx_string_put(jeu->mlx, jeu->mlx_win, 0, 0, 0xFFFFFF, string_put);
+	free(string_put);
 }

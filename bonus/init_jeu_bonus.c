@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_jeu_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:31 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:40:27 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:54:02 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,7 @@ void	aid_print_images(t_carte *jeu, int x, int y)
 				&jeu->largeur_carte, &jeu->hauteur_carte);
 		ft_chek_etput(jeu, x, y);
 	}
-	else if (jeu->carte[x][y] == 'C')
-	{
-		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, COLLECT,
-				&jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_etput(jeu, x, y);
-	}
-	else if (jeu->carte[x][y] == 'E')
-	{
-		jeu->mlx_img = mlx_xpm_file_to_image(jeu->mlx, DOOR,
-				&jeu->largeur_carte, &jeu->hauteur_carte);
-		ft_chek_etput(jeu, x, y);
-	}
+	aid_print_images_2(jeu, x, y);
 }
 
 void	print_images(t_carte *jeu)
@@ -123,8 +112,8 @@ int	init_jeu(t_carte **jeu)
 {
 	position_enimi(jeu);
 	position_player(jeu);
-	if ((*jeu)->carte[(*jeu)->pos_joueur_x][(*jeu)->pos_joueur_y] == (*jeu)->carte[(*jeu)->pos_ennemi_x
-		- 1][(*jeu)->pos_ennemi_y])
+	if ((*jeu)->carte[(*jeu)->pos_joueur_x][(*jeu)->pos_joueur_y] ==
+		(*jeu)->carte[(*jeu)->pos_ennemi_x - 1][(*jeu)->pos_ennemi_y])
 		enimi_win(jeu);
 	(*jeu)->mlx = mlx_init();
 	if (!(*jeu)->mlx)
