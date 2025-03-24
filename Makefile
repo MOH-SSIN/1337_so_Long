@@ -38,7 +38,7 @@ CC = cc
 RM = rm -rf
 CFLAGS = -I$(MLX_DIR) -Ilibft -Ig_n_l
 
-MLX_DIR = ./minilibx_mms_20200219
+MLX_DIR = ./minilibx_opengl_20191021
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 LIBFT_DIR = ./libft

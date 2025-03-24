@@ -55,6 +55,14 @@ typedef struct s_carte
 	int		nbr_mouve;
 }			t_carte;
 
+typedef struct s_counts
+{
+	int p;
+	int e;
+	int c;
+	int x;
+}	t_counts;
+
 char		**charger_carte(char *av[], t_carte **jeu);
 
 void		free_jeu(t_carte *jeu);
@@ -74,7 +82,7 @@ char		**copie_map(char **carte);
 void		ft_marque(char **carte, int i, int j);
 void		aid_print_images_2(t_carte *jeu, int x, int y);
 
-int			aid_verif_elements(char element, int *p, int *e, int *c, int *x);
+int			aid_verif_elements(char element, t_counts *counts);
 int			get_position_player(char **copie, int *i, int *j);
 int			ft_presence_elemntes(char **copie);
 void		update_move_count(t_carte *jeu);

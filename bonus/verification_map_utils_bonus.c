@@ -59,29 +59,26 @@ int	verif_murs(char **carte)
 
 int	verif_elements(char **carte)
 {
-	int	i;
-	int	j;
-	int	p;
-	int	e;
-	int	c;
-	int	x;
+	int		i;
+	int		j;
+	t_counts	counts;
 
-	p = 0;
-	e = 0;
-	c = 0;
-	x = 0;
+	counts.p = 0;
+	counts.e = 0;
+	counts.c = 0;
+	counts.x = 0;
 	i = -1;
 	while (carte[++i])
 	{
 		j = 0;
 		while (carte[i][j])
 		{
-			if (!aid_verif_elements(carte[i][j], &p, &e, &c, &x))
+			if (!aid_verif_elements(carte[i][j], &counts))
 				return (0);
 			j++;
 		}
 	}
-	if (p != 1 || e != 1 || x != 1 || c < 1)
+	if (counts.p != 1 || counts.e != 1 || counts.x != 1 || counts.c < 1)
 		return (0);
 	return (1);
 }

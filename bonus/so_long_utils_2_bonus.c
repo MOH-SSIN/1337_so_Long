@@ -12,16 +12,16 @@
 
 #include "so_long_bonus.h"
 
-int	aid_verif_elements(char element, int *p, int *e, int *c, int *x)
+int	aid_verif_elements(char element, t_counts *counts)
 {
 	if (element == 'P')
-		(*p)++;
+		counts->p++;
 	else if (element == 'E')
-		(*e)++;
+		counts->e++;
 	else if (element == 'C')
-		(*c)++;
+		counts->c++;
 	else if (element == 'X')
-		(*x)++;
+		counts->x++;
 	else if (element != '0' && element != '1')
 		return (0);
 	return (1);
