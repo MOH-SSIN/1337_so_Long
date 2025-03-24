@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verification_map_utils_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:20 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:45:40 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/24 16:52:56 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	verif_murs(char **carte)
 
 int	verif_elements(char **carte)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	t_counts	counts;
 
 	counts.p = 0;

@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:31 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/21 14:54:02 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:22:39 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,15 @@ int	move_enemy(t_carte **jeu)
 {
 	int	next_x;
 
-	if (++frame_count < 2000)
+	if (++(*jeu)->frame_count < 2000)
 		return (0);
-	frame_count = 0;
-	next_x = (*jeu)->pos_ennemi_x + direction;
+	(*jeu)->frame_count = 0;
+	next_x = (*jeu)->pos_ennemi_x + (*jeu)->direction;
 	if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == '1'
 		|| (*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'C')
 	{
-		direction *= -1;
-		next_x = (*jeu)->pos_ennemi_x + direction;
+		(*jeu)->direction *= -1;
+		next_x = (*jeu)->pos_ennemi_x + (*jeu)->direction;
 	}
 	else if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'P')
 		enimi_win(jeu);
@@ -112,6 +112,8 @@ int	init_jeu(t_carte **jeu)
 {
 	position_enimi(jeu);
 	position_player(jeu);
+	(*jeu)->direction = 1;
+	(*jeu)->frame_count = 0;
 	if ((*jeu)->carte[(*jeu)->pos_joueur_x][(*jeu)->pos_joueur_y] ==
 		(*jeu)->carte[(*jeu)->pos_ennemi_x - 1][(*jeu)->pos_ennemi_y])
 		enimi_win(jeu);

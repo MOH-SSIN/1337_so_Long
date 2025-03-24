@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:18 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/21 15:06:37 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:19:59 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@
 # define MUR_2 "image_1/wall.xpm"
 # define ENNEMI "image_1/Enemy.xpm"
 
-static int	direction = 1;
-static int	frame_count = 0;
+// static int direction = 1;   // Renommée en g_direction
+// static int frame_count = 0;  // Renommée en g_frame_count
 
 typedef struct s_carte
 {
 	int		direction;
+	int		frame_count;
 	void	*mlx;
 	void	*mlx_win;
 	void	*mlx_img;
@@ -57,11 +58,11 @@ typedef struct s_carte
 
 typedef struct s_counts
 {
-	int p;
-	int e;
-	int c;
-	int x;
-}	t_counts;
+	int		p;
+	int		e;
+	int		c;
+	int		x;
+}			t_counts;
 
 char		**charger_carte(char *av[], t_carte **jeu);
 

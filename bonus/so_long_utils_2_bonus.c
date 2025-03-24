@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:36 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/21 15:05:15 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:52:29 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	ft_presence_elemntes(char **copie)
 	}
 	return (c == 0 && e == 0 && x == 0);
 }
+
 void	update_move_count(t_carte *jeu)
 {
 	char	*string_put;
