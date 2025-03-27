@@ -6,12 +6,11 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:52:47 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/02/12 17:58:06 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:27:51 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdio.h"
 
 static int	ft_ft(int sign)
 {
