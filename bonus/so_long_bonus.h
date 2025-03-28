@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:18 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/24 17:19:59 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:27:40 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/libft.h"
 # include "mlx.h"
-# include "stdio.h"
 # include <fcntl.h>
 # include <stdbool.h>
 

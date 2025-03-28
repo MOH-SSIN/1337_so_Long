@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:42 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/21 14:26:02 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/28 13:48:30 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,9 @@ int	ft_presence_elemntes(char **copie)
 {
 	int	i;
 	int	j;
-	int	c;
 	int	e;
 
 	i = 0;
-	c = 0;
 	e = 0;
 	while (copie[i])
 	{
@@ -82,11 +80,9 @@ int	ft_presence_elemntes(char **copie)
 		{
 			if (copie[i][j] == 'E')
 				e++;
-			else if (copie[i][j] == 'C')
-				c++;
 			j++;
 		}
 		i++;
 	}
-	return (c == 0 && e == 0);
+	return (e == 0);
 }

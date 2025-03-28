@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:51 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/21 14:38:43 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/28 13:29:57 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	print_images(t_carte *jeu)
 		}
 	}
 }
+#include "stdio.h"
 
 int	init_jeu(t_carte **jeu)
 {
