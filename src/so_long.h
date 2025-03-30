@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:02:25 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/28 13:40:46 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 13:30:30 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
 # include <stdbool.h>
 
 # define TAILLE 50
-# define ESPACE "image_1/baground.xpm"
-# define COLLECT "image_1/Collect.xpm"
-# define DOOR "image_1/door_close.xpm"
-# define DOOR_OPEN "image_1/door_open.xpm"
-# define JOUEUR_BOTTOM "image_1/pac_man_botom.xpm"
-# define JOUEUR_TOP "image_1/pac_man_top.xpm"
-# define JOUEUR_RIGHT "image_1/pac_man_right.xpm"
-# define JOUEUR_LEFT "image_1/pac_man_left.xpm"
-# define MUR "image_1/wall.xpm"
-# define MUR_2 "image_1/wall.xpm"
-# define ENNEMI "image_1/Enemy.xpm"
+# define ESPACE "textures/baground.xpm"
+# define COLLECT "textures/Collect.xpm"
+# define DOOR "textures/door_close.xpm"
+# define DOOR_OPEN "textures/door_open.xpm"
+# define JOUEUR_BOTTOM "textures/pac_man_botom.xpm"
+# define JOUEUR_TOP "textures/pac_man_top.xpm"
+# define JOUEUR_RIGHT "textures/pac_man_right.xpm"
+# define JOUEUR_LEFT "textures/pac_man_left.xpm"
+# define MUR "textures/wall.xpm"
+# define MUR_2 "textures/wall.xpm"
+# define ENNEMI "textures/Enemy.xpm"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10000000
