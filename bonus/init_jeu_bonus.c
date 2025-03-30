@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:31 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/24 17:22:39 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:52:17 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,26 @@ void	print_image_4(t_carte **jeu, char image)
 int	move_enemy(t_carte **jeu)
 {
 	int	next_x;
+	int	next_y;
 
-	if (++(*jeu)->frame_count < 2000)
+	if (++(*jeu)->frame_count < 5000)
 		return (0);
 	(*jeu)->frame_count = 0;
 	next_x = (*jeu)->pos_ennemi_x + (*jeu)->direction;
-	if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == '1'
-		|| (*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'C')
+	next_y = (*jeu)->pos_ennemi_y;
+	if (!is_valid_enemy_move(*jeu, next_x, next_y))
 	{
 		(*jeu)->direction *= -1;
 		next_x = (*jeu)->pos_ennemi_x + (*jeu)->direction;
+		if (!is_valid_enemy_move(*jeu, next_x, next_y))
+			return (0);
 	}
-	else if ((*jeu)->carte[next_x][(*jeu)->pos_ennemi_y] == 'P')
+	if ((*jeu)->carte[next_x][next_y] == 'P')
 		enimi_win(jeu);
 	(*jeu)->carte[(*jeu)->pos_ennemi_x][(*jeu)->pos_ennemi_y] = '0';
 	print_image_4(jeu, 'S');
 	(*jeu)->pos_ennemi_x = next_x;
-	(*jeu)->carte[(*jeu)->pos_ennemi_x][(*jeu)->pos_ennemi_y] = 'X';
+	(*jeu)->carte[next_x][next_y] = 'X';
 	print_image_4(jeu, 'N');
 	return (0);
 }

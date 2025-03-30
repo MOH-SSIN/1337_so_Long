@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:18 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/27 16:27:40 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:52:31 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@
 # define MUR "image_1/wall.xpm"
 # define MUR_2 "image_1/wall.xpm"
 # define ENNEMI "image_1/Enemy.xpm"
-
-// static int direction = 1;   // Renommée en g_direction
-// static int frame_count = 0;  // Renommée en g_frame_count
 
 typedef struct s_carte
 {
@@ -78,6 +75,7 @@ int			init_jeu(t_carte **jeu);
 
 int			ft_exit(t_carte **jeu);
 int			ft_keymove(int click, t_carte **jeu);
+int			is_valid_enemy_move(t_carte *jeu, int next_x, int next_y);
 char		**copie_map(char **carte);
 void		ft_marque(char **carte, int i, int j);
 void		aid_print_images_2(t_carte *jeu, int x, int y);

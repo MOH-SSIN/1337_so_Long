@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:49 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/24 16:52:35 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 12:56:45 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,15 @@ void	aid_print_images_2(t_carte *jeu, int x, int y)
 				&jeu->largeur_carte, &jeu->hauteur_carte);
 		ft_chek_etput(jeu, x, y);
 	}
+}
+
+int	is_valid_enemy_move(t_carte *jeu, int next_x, int next_y)
+{
+	if (next_x < 0 || next_x >= jeu->hauteur_carte
+		|| next_y < 0 || next_y >= jeu->largeur_carte)
+		return (0);
+	if (jeu->carte[next_x][next_y] == '1' || jeu->carte[next_x][next_y] == 'C'
+		|| jeu->carte[next_x][next_y] == 'E')
+		return (0);
+	return (1);
 }

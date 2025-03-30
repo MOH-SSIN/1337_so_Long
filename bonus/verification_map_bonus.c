@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verification_map_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:11:52 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:47:00 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/30 09:15:48 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	verfication(t_carte *jeu)
 	}
 	if (!verif_elements(jeu->carte))
 	{
-		ft_putstr_fd("Problème avec les éléments P, E, ou C\n", 2);
+		ft_putstr_fd("Problème avec les éléments P, E, C, ou X\n", 2);
 		return (0);
 	}
 	if (!door_est_bloque(jeu->carte) || !collecte_est_bloque(jeu->carte))

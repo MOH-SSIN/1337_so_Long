@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idahhan <idahhan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:42 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/20 14:36:02 by idahhan          ###   ########.fr       */
+/*   Updated: 2025/03/30 09:13:46 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,10 @@ void	ft_so_long(t_carte **jeu)
 	}
 }
 
-void	mohcine(void)
-{
-	system("leaks so_long");
-}
-
 int	main(int argc, char **argv)
 {
 	t_carte	*jeu;
 
-	atexit(mohcine);
 	if (argc != 2 || !ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
 		ft_putstr_fd("Erreur dans argumente!\n", 2);
