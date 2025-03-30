@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:31 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/30 12:52:17 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 13:19:41 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ int	init_jeu(t_carte **jeu)
 	mlx_string_put((*jeu)->mlx, (*jeu)->mlx_win, 0, 0, 0xFFFFFF, "MV:0");
 	mlx_hook((*jeu)->mlx_win, 17, (1L << 0), ft_exit, jeu);
 	mlx_hook((*jeu)->mlx_win, 2, (1L << 0), ft_keymove, jeu);
+	if (ft_chek(jeu))
+		print_image_4(jeu, 'N');
 	mlx_loop_hook((*jeu)->mlx, move_enemy, jeu);
 	mlx_loop((*jeu)->mlx);
 	return (1);

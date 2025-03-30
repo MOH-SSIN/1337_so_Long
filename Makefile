@@ -6,7 +6,7 @@
 #    By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 15:10:12 by mez-zahi          #+#    #+#              #
-#    Updated: 2025/03/30 12:58:20 by mez-zahi         ###   ########.fr        #
+#    Updated: 2025/03/30 12:58:35 by mez-zahi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ CC = cc
 RM = rm -rf
 CFLAGS = -I$(MLX_DIR) -Ilibft -Ig_n_l
 
-# MLX_DIR = ./minilibx_opengl_20191021
 MLX_DIR = ./minilibx_mms_20200219
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 

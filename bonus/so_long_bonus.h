@@ -6,7 +6,7 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:10:18 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/30 12:52:31 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 13:20:00 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		free_map_copy(char **map);
 bool		initialiser_jeu(t_carte **jeu);
 
 int			verfication(t_carte *jeu);
+int			ft_chek(t_carte **jeu);
 
 int			init_jeu(t_carte **jeu);
 

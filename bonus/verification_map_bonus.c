@@ -6,11 +6,26 @@
 /*   By: mez-zahi <mez-zahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:11:52 by mez-zahi          #+#    #+#             */
-/*   Updated: 2025/03/30 09:15:48 by mez-zahi         ###   ########.fr       */
+/*   Updated: 2025/03/30 13:19:32 by mez-zahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+int	ft_chek(t_carte **jeu)
+{
+	int	x;
+	int	y;
+
+	x = (*jeu)->pos_ennemi_x;
+	y = (*jeu)->pos_ennemi_y;
+	if (((*jeu)->carte[x - 1][y] == '1' || (*jeu)->carte[x - 1][y] == 'C'
+			|| (*jeu)->carte[x - 1][y] == 'E')
+		&& ((*jeu)->carte[x + 1][y] == '1' || (*jeu)->carte[x + 1][y] == 'C'
+			|| (*jeu)->carte[x + 1][y] == 'E'))
+		return (1);
+	return (0);
+}
 
 int	verfication(t_carte *jeu)
 {
